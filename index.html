@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tile Test Viewer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+    // --- Configuration ---
+    // IMPORTANT: Use a relative path to your tiles folder.
+    // The '{z}/{x}/{y}.webp' part is the template for the tile coordinates.
+    var tileUrl = 'redes_tiles/{z}/{x}/{y}.webp'; 
+
+    // --- Map Initialization ---
+    var map = L.map('map', {
+        crs: L.CRS.Simple, // Use a simple coordinate system for images
+        minZoom: -2 // Allows zooming out further to see the whole image
+    });
+
+    var layer = L.tileLayer(tileUrl, {
+        attribution: 'Image Test',
+        maxZoom: 5, // Adjust if you have more zoom levels
+        noWrap: true // Prevents the map from repeating
+    }).addTo(map);
+
+    // Center the map on the image
+    map.setView([0, 0], 0); 
+</script>
+
+</body>
+</html>
